@@ -8,6 +8,6 @@ https://github.com/Azure-Samples/digital-twins-explorer
 > \> cd c:\github\digital-twins-explorer-main\client\src   
 > \> npm install  
 > \> npm run start
-
+Enter hostname with **https://**  
 
 
