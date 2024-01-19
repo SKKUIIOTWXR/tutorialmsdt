@@ -1,7 +1,4 @@
-#########################################################
-############################## Digital Twin Interface 
-#########################################################
-
+################################################## Digital Twin Interface 
 
 {
     "@id": "dtmi:com:contoso:room;1",
@@ -32,7 +29,7 @@
     "@context": "dtmi:dtdl:context;2"
 }
 
-#########################################################
+##################################################
 
 {
     "@id": "dtmi:com:contoso:door;1",
@@ -41,13 +38,56 @@
     "@context": "dtmi:dtdl:context;2"
 }
 
-#########################################################
-############################## Interface Content
-#########################################################
+################################################## Property
 
 {
     "@type": "Property",
     "name": "settemperature",
     "schema": "double",
     "writable": true
+}
+
+################################################## Telemetry
+
+{
+    "@type": "Telemetry",
+    "name": "temperature",
+    "unit": "degreeCelcius",
+    "schema": "double"
+}
+
+################################################## relationship 
+
+{
+    "@id": "dtmi:com:contoso:room;1",
+    "@type": "Interface",
+    "displayName": "Room",
+    "contents": [
+        {
+            "@type": "Relationship",
+            "name": "floor",
+            "target": "dtmi:com:contoso:floor;1"
+        },
+        {
+            "@type": "Relationship",
+            "name": "inspectedby",
+            "target": "dtmi:com:contoso:employee;1"
+        }
+    ],
+    "@context": "dtmi:dtdl:context;2"
+}
+
+##################################################
+
+{
+    "@type": "Relationship",
+    "name": "cleanedby",
+    "target": "dtmi:com:contoso:employee;1",
+    "properties" : [
+        {
+            "@type": "Property",
+            "name": "lastchecked",
+            "schema": "dateTime"
+        }
+    ]
 }
