@@ -8,6 +8,9 @@
 **Microsoft Azure Digital Twins Code Samples :** 
 https://learn.microsoft.com/en-us/samples/browse/?expanded=azure&products=azure-digital-twins   
 
+**Microsoft DTDL Validator Code Samples :**
+https://github.com/Azure-Samples/DTDL-Validator (Archived)  
+
 **Book Color Images :**
 https://static.packt-cdn.com/downloads/9781801071383_ColorImages.pdf
 
