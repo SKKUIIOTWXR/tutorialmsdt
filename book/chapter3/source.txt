@@ -120,3 +120,56 @@
     ],
     "@context": "dtmi:dtdl:context;2"
 }]
+
+################################################## Array
+
+{
+    "@type": "Property",
+    "name": "equipmentstate",
+    "schema": {
+        "@type": "Array",
+        "elementSchema": {
+            "@type":"Object",
+            "name":"equipmentstate",
+            "field":[
+                {
+                    "name":"name",
+                    "schema":"string"
+                },                
+                {
+                    "name":"active",
+                    "schema":"boolean"
+                },
+                {
+                    "name":"radius",
+                    "schema":"long"
+                }
+            ]
+        }
+    }
+}
+
+################################################## Enum
+
+{
+    "@type": "Property",
+    "name": "state",
+    "schema": {
+        "@type": "Enum",
+        "valueSchema": "integer",
+        "enumValues": [
+            {
+                "name": "inactive",
+                "enumValue": 1
+            },
+            {
+                "name": "active",
+                "enumValue": 2
+            },
+            {
+                "name": "onhold",
+                "enumValue": 3
+            }
+        ]
+    }
+}
