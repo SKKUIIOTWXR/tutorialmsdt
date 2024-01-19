@@ -91,3 +91,32 @@
         }
     ]
 }
+
+################################################## Component
+
+[{
+    "@id": "dtmi:com:contoso:ceiling;1",
+    "@type": "Interface",
+    "displayName": "Ceiling",
+    "contents": [
+        {
+            "@type": "Property",
+            "name": "height",
+            "schema": "float"
+        }
+    ],
+    "@context": "dtmi:dtdl:context;2"
+},
+{
+    "@id": "dtmi:com:contoso:room;1",
+    "@type": "Interface",
+    "displayName": "Room",
+    "contents": [
+        {
+            "@type": "Component",
+            "name": "ceiling",
+            "schema": "dtmi:com:contoso:ceiling;1"
+        }
+    ],
+    "@context": "dtmi:dtdl:context;2"
+}]
