@@ -1,4 +1,4 @@
-############################## 1
+############################## 1 (This brings ERROR. Just use sample source building.json. Later run this) 
 
 {
   "@id": "dtmi:com:smartbuilding:Building;1",
