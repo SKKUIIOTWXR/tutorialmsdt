@@ -144,3 +144,44 @@ foreach (DigitalTwinsModelData model in models)
     Console.WriteLine(model.Id);
     Console.WriteLine(model.LanguageDisplayNames["en"]);
 }
+
+############################## CreateDigitalTwin in DigitalTwinsManager class
+
+        public bool CreateDigitalTwin(string twinId, string modelId)
+        {
+            BasicDigitalTwin digitalTwin = new BasicDigitalTwin();
+            digitalTwin.Metadata = new DigitalTwinMetadata();
+            digitalTwin.Metadata.ModelId = modelId;
+            digitalTwin.Id = twinId;
+            try
+            {
+                client.CreateOrReplaceDigitalTwin<BasicDigitalTwin>(twinId, digitalTwin);
+            }
+            catch (RequestFailedException)
+            {
+                return false;
+            }
+            return true;
+        }
+
+############################## UpdateDigitalTwin in DigitalTwinsManager class
+
+        public bool UpdateDigitalTwin(string twinId, string property, object value)
+        {
+            try
+            {
+                BasicDigitalTwin digitalTwin = client.GetDigitalTwin<BasicDigitalTwin>(twinId);
+                digitalTwin.Contents[property] = value;
+                client.CreateOrReplaceDigitalTwin<BasicDigitalTwin>(twinId, digitalTwin);
+            }
+            catch (RequestFailedException)
+            {
+                return false;
+            }
+            return true;
+        }
+
+############################## UpdateDigitalTwin in //TODO in Program.cs
+
+dtHelper.UpdateDigitalTwin("MeetingRoom1.01", "occupied", true);
+
