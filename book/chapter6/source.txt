@@ -1,0 +1,209 @@
+############################## 1
+
+{
+  "@id": "dtmi:com:smartbuilding:Building;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Building",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "rooms",
+      …
+    },
+    {
+      "@type": "Relationship",
+      "name": "has",
+      "target": "dtmi:com:smartbuilding:Floor;1"
+    }
+  ]
+}
+
+############################## 2
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+string[] paths = new string[] {
+    "Models/chapter6/building.json"
+};
+dtHelper.DeleteModel("dtmi:com:smartbuilding:Building;1");
+dtHelper.CreateModels(paths);
+Console.WriteLine("Model updated");
+
+############################## 3
+
+public void CreateRelationship(string twinSourceId, string twinDestinationId, string description, Dictionary<string, object> properties = null)
+{
+    string relationShipId = RelationshipId(twinSourceId,
+twinDestinationId);
+    BasicRelationship relationship = new BasicRelationship
+    {
+        Id = "buildingFloorRelationshipId",
+        SourceId = twinSourceId,
+        TargetId = twinDestinationId,
+        Name = description,
+        Properties = properties
+    };
+    try
+    {
+        client.CreateOrReplaceRelationship(twinSourceId, relationShipId, relationship);
+    }
+    catch (RequestFailedException)
+    {
+    }
+}
+
+############################## 4
+
+public string RelationshipId(string twinSourceId, string twinDestinationId)
+{
+    return string.Format("{0}-{1}", twinSourceId, twinDestinationId);
+}
+
+############################## 5
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+dtHelper.CreateRelationship("MainBuilding", "GroundFloor", "has");
+
+############################## 6
+
+public BasicRelationship GetRelationship(string twinSourceId, string twinDestinationId)
+{
+    string relationShipId = RelationshipId(twinSourceId, twinDestinationId);
+    try
+    {
+        Response<BasicRelationship> relationship = client.GetRelationship<BasicRelationship>(twinSourceId, relationShipId);
+        return relationship.Value;
+    }
+    catch (RequestFailedException)
+    {
+    }
+    return null;
+}
+
+############################## 7
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+BasicRelationship relationship = dtHelper.GetRelationship("MainBuilding", "GroundFloor");
+if (relationship != null)
+{
+    Console.WriteLine(relationship.Id);
+}
+
+############################## 8
+
+public Pageable<BasicRelationship> ListRelationships(string twinSourceId)
+{
+    try
+    {
+        Pageable<BasicRelationship> relationships = client.GetRelationships<BasicRelationship>(twinSourceId);
+        return relationships;
+    }
+    catch (RequestFailedException)
+    {
+    }
+    return null;
+}
+
+############################## 9
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+Pageable<BasicRelationship> relationships = dtHelper.ListRelationships("MainBuilding");
+foreach(BasicRelationship relationship in relationships)
+{
+    Console.WriteLine(relationship.Id);
+}
+
+############################## 10
+
+public void DeleteRelationship(string twinSourceId, string twinDestinationId)
+{
+    string relationShipId = RelationshipId(twinSourceId, twinDestinationId);
+    try
+    {
+        client.DeleteRelationship(twinSourceId, relationShipId);
+    }
+    catch (RequestFailedException)
+    {
+    }
+}
+
+############################## 11
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+dtHelper.DeleteRelationship("MainBuilding", "GroundFloor");
+
+############################## 12
+
+{
+  "@id": "dtmi:com:smartbuilding:Building;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Building",
+  "contents": [
+…
+    {
+      "@type": "Relationship",
+      "name": "has",
+      "target": "dtmi:com:smartbuilding:Floor;1",
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "level",
+          "schema": "integer"
+        }
+      ]
+    }
+  ]
+}
+
+############################## 13
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+Dictionary<string, object> properties = new Dictionary<string, object>();
+properties["level"] = 0;
+dtHelper.CreateRelationship("MainBuilding", "GroundFloor", "has", properties);
+
+############################## 14
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+Pageable<BasicRelationship> relationships = dtHelper.
+ListRelationships("MainBuilding");
+foreach(BasicRelationship relationship in relationships)
+{
+    Console.WriteLine(relationship.Id);
+    foreach(string key in relationship.Properties.Keys)
+    {
+        Console.WriteLine(string.Format("{0}:{1}", key, relationship.Properties[key]));
+    }
+}
+
+############################## 15
+
+public void UpdateRelationship(string twinSourceId, string twinDestinationId, string property, object value)
+{
+    string relationShipId = RelationshipId(twinSourceId, twinDestinationId);
+    JsonPatchDocument patch = null;
+    try
+    {
+        patch = new JsonPatchDocument();
+        patch.AppendReplace("/" + property, value);
+        client.UpdateRelationship(twinSourceId, relationShipId, patch);
+    }
+    catch (RequestFailedException)
+    {
+    }
+}
+
+############################## 16
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+dtHelper.UpdateRelationship("MainBuilding", "GroundFloor", "level", 8);
+Pageable<BasicRelationship> relationships = dtHelper.ListRelationships("MainBuilding");
+foreach(BasicRelationship relationship in relationships)
+{
+    Console.WriteLine(relationship.Id);
+    foreach(string key in relationship.Properties.Keys)
+    {
+        Console.WriteLine(string.Format("{0}:{1}", key, relationship.Properties[key]));
+    }
+}
