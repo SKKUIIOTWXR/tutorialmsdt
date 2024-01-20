@@ -16,6 +16,8 @@ namespace SmartBuildingConsoleApp.DigitalTwins
         }
         public void Connect()
         {
+            var cred = new DefaultAzureCredential();
+            client = new DigitalTwinsClient(new Uri(adtInstanceUrl), cred);
         }
     }
 }
