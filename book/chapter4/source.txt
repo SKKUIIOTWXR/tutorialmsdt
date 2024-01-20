@@ -21,3 +21,21 @@ namespace SmartBuildingConsoleApp.DigitalTwins
         }
     }
 }
+
+############################## Program.cs
+
+using SmartBuildingConsoleApp.DigitalTwins;
+using System;
+
+namespace SmartBuildingConsoleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+            // TODO
+
+        }
+    }
+}
