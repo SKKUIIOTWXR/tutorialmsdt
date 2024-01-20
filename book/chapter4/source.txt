@@ -19,6 +19,15 @@ namespace SmartBuildingConsoleApp.DigitalTwins
             var cred = new DefaultAzureCredential();
             client = new DigitalTwinsClient(new Uri(adtInstanceUrl), cred);
         }
+
+        public void CreateModel(string path)
+        {
+            using var modelStreamReader = new StreamReader(path);
+            string dtdl = modelStreamReader.ReadToEnd();
+            string[] dtdls = new string[] { dtdl };
+            client.CreateModels(dtdls);
+        }
+
     }
 }
 
@@ -36,6 +45,54 @@ namespace SmartBuildingConsoleApp
             DigitalTwinsManager dtHelper = new DigitalTwinsManager();
             // TODO
 
+            string path = "Models/Chapter4/room.json";
+            dtHelper.CreateModel(path);
         }
     }
 }
+
+############################## room.json
+
+{
+  "@id": "dtmi:com:smartbuilding:Room;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Room"
+}
+
+############################## CreateModel() in DigitalTwinsManager class
+
+public bool CreateModel(string path)
+{
+    return CreateModels(new string[] { path });
+}
+public bool CreateModels(string[] path)
+{
+    List<string> dtdls = new List<string>();
+    foreach (string p in path)
+    {
+        using var modelStreamReader = new StreamReader(p);
+        string dtdl = modelStreamReader.ReadToEnd();
+        dtdls.Add(dtdl);
+    }
+    try
+    {
+        DigitalTwinsModelData[] models = client.CreateModels(dtdls.ToArray());
+    }
+    catch (RequestFailedException)
+    {
+        return false;
+    }
+    return true;
+}
+
+############################## //TODO in Program.cs
+
+            string[] paths = new string[] {
+                "Models/chapter4/campus.json",
+                "Models/chapter4/building.json",
+                "Models/chapter4/floor.json",
+                "Models/chapter4/workarea.json",
+                "Models/chapter4/sensor.json"
+            };
+            dtHelper.CreateModels(paths);
