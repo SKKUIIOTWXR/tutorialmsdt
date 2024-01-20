@@ -96,3 +96,51 @@ public bool CreateModels(string[] path)
                 "Models/chapter4/sensor.json"
             };
             dtHelper.CreateModels(paths);
+
+############################## DeleteModel() in DigitalTwinsManager class
+
+        public void DeleteModel(string modelId)
+        {
+            client.DeleteModel(modelId);
+        }
+
+############################## DeleteModel() in //TODO in Program.cs
+
+dtHelper.DeleteModel("dtmi:com:smartbuilding:Meetingroom;1");
+
+############################## GetModel() in DigitalTwinsManager class
+
+public DigitalTwinsModelData GetModel(string modelId)
+{
+    try
+    {
+        return client.GetModel(modelId);
+    }
+    catch (RequestFailedException)
+    {
+        return null;
+    }
+}
+
+############################## GetModel() in //TODO in Program.cs
+
+DigitalTwinsModelData model = dtHelper.GetModel("dtmi:com:smartbuilding:Room;1");
+Console.WriteLine(model.Id);
+Console.WriteLine(model.LanguageDisplayNames["en"]);
+
+############################## GetModels() in DigitalTwinsManager class
+
+public Pageable<DigitalTwinsModelData> GetModels()
+{
+    GetModelsOptions options = new GetModelsOptions();
+    return client.GetModels(options);
+}
+
+############################## GetModels() in //TODO in Program.cs
+
+var models = dtHelper.GetModels();
+foreach (DigitalTwinsModelData model in models)
+{
+    Console.WriteLine(model.Id);
+    Console.WriteLine(model.LanguageDisplayNames["en"]);
+}
