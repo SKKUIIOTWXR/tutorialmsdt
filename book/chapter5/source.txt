@@ -58,8 +58,7 @@ public void UpdateDigitalTwinProperty(string twinId, string property, object val
 
 DigitalTwinsManager dtHelper = new DigitalTwinsManager();
 dtHelper.UpdateDigitalTwinProperty("GroundFloor", "floornumber", 1);
-dtHelper. UpdateDigitalTwinProperty ("GroundFloor",
-"lightson", true);
+dtHelper. UpdateDigitalTwinProperty ("GroundFloor", "lightson", true);
 
 ############################## building.json 
 
@@ -106,3 +105,140 @@ map.Add("MeetingRoom101", 21.3f);
 map.Add("MeetingRoom102", 22.1f);
 map.Add("MeetingRoom103", 20.9f);
 dtHelper.UpdateDigitalTwinProperty("MainBuilding", "rooms", map);
+
+############################## Meetingroom.json 
+
+{
+  "@id": "dtmi:com:smartbuilding:Meetingroom;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "extends": [ "dtmi:com:smartbuilding:Room;1" ],
+  "displayName": "Meetingroom",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "occupied",
+      "schema": "boolean",
+      "writable": true
+    },
+    {
+      "@type": "Property",
+      "name": "temperaturevalue",
+      "schema": "double",
+      "writable":  true
+    },
+    {
+      "@type": "Telemetry",
+      "name": "temperature",
+      "schema": "double"
+    }
+  ]
+}
+
+############################## Program.cs 
+
+string[] paths = new string[] {
+    "Models/chapter5/Meetingroom.json"
+};
+//dtHelper.DeleteModel("dtmi:com:smartbuilding:Meetingroom;1");     // Should be commented as Meetingroom is deleted on Explorer
+dtHelper.CreateModels(paths);
+Console.WriteLine("Model updated");
+
+############################## GenerateSensorData() in Program Class in Program.cs
+
+public static void GenerateSensorData()
+{
+    DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+    // generate sensor data
+    TemperatureSensor sensor = new TemperatureSensor();
+    Console.WriteLine("Temperature sensor");
+    while (true)
+    {
+        double temperature = sensor.GetMeasurement();
+        Console.WriteLine(string.Format("{0} degrees", temperature));
+        dtHelper.UpdateDigitalTwinProperty("MeetingRoom1.01", "temperaturevalue", temperature);
+        System.Threading.Thread.Sleep(1000);
+    }
+}
+
+############################## Program.Main method in Program.cs 
+
+static void Main(string[] args)
+{
+    // generate sensor data
+    System.Threading.Thread sensorThread = new System.Threading.Thread(GenerateSensorData);
+    sensorThread.Start();
+}
+
+############################## airconditioningunit.json
+
+{
+  "@id": "dtmi:com:smartbuilding:AirconditioningUnit;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "AirconditioningUnit",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "poweron",
+      "schema": "boolean",
+      "writable": true
+    },
+    {
+      "@type": "Property",
+      "name": "level",
+      "schema": "double",
+      "writable": true
+    }
+  ]
+}
+
+############################## airconditioningcontroller.json
+
+{
+  "@id": "dtmi:com:smartbuilding:AirconditioningController;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "AirconditioningController",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "temperatureset",
+      "schema": "float",
+      "writable": true
+    }
+  ]
+}
+
+############################## airconditioningsystem.json
+
+{
+  "@id": "dtmi:com:smartbuilding:AirconditioningSystem;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "AirconditioningSystem",
+  "contents": [
+    {
+      "@type": "Component",
+      "name": "airconditioningunity",
+      "schema": "dtmi:com:smartbuilding:AirconditioningUnit;1"
+    },
+    {
+      "@type": "Component",
+      "name": "airconditioningcontroller",
+      "schema": "dtmi:com:smartbuilding:AirconditioningController;1"
+    }
+  ]
+}
+
+############################## Program.Main method in the Program.cs
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+string[] paths = new string[] {
+    "Models/chapter5/airconditioningunit.json",
+    "Models/chapter5/airconditioningcontroller.json",
+    "Models/chapter5/airconditioningsystem.json"
+};
+dtHelper.CreateModels(paths);
+Console.WriteLine("Models created");
+
