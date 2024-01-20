@@ -30,4 +30,79 @@ dtHelper.DeleteModel("dtmi:com:smartbuilding:Floor;1");
 dtHelper.CreateModels(paths);
 Console.WriteLine("Model updated");
 
+############################## Program.cs (FAIL ?) 
 
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+dtHelper.UpdateDigitalTwin("GroundFloor", "floornumber", 1);
+dtHelper.UpdateDigitalTwin("GroundFloor", "lightson", true);
+
+############################## DigitalTwinsManager 
+public void UpdateDigitalTwinProperty(string twinId, string property, object value)
+{
+    JsonPatchDocument patch = null;
+    try
+    {
+        patch = new JsonPatchDocument();
+        patch.AppendAdd("/" + property, value);
+        client.UpdateDigitalTwin(twinId, patch);
+    }
+    catch (RequestFailedException)
+    {
+    }
+    patch = new JsonPatchDocument();
+    patch.AppendReplace("/" + property, value);
+    client.UpdateDigitalTwin(twinId, patch);
+}
+
+############################## Program.cs
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+dtHelper.UpdateDigitalTwinProperty("GroundFloor", "floornumber", 1);
+dtHelper. UpdateDigitalTwinProperty ("GroundFloor",
+"lightson", true);
+
+############################## building.json 
+
+{
+  "@id": "dtmi:com:smartbuilding:Building;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Building",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "rooms",
+      "writable": true,
+      "schema": {
+        "@type": "Map",
+        "mapKey": {
+          "name": "roomname",
+          "schema": "string"
+        },
+        "mapValue": {
+          "name": "roomtemperature",
+          "schema": "float"
+        }
+      }
+    }
+  ]
+}
+
+############################## Program.cs
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+string[] paths = new string[] {
+    "Models/chapter5/building.json"
+};
+dtHelper.DeleteModel("dtmi:com:smartbuilding:Building;1");
+dtHelper.CreateModels(paths);
+Console.WriteLine("Model updated");
+
+############################## Program.cs 
+
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+var map = new Dictionary<string, float>();
+map.Add("MeetingRoom101", 21.3f);
+map.Add("MeetingRoom102", 22.1f);
+map.Add("MeetingRoom103", 20.9f);
+dtHelper.UpdateDigitalTwinProperty("MainBuilding", "rooms", map);
