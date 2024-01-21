@@ -15,9 +15,17 @@ To help you validate your models, a .NET client-side DTDL parsing library is pro
 **Microsoft DTDL Validator Code Samples :**
 https://github.com/Azure-Samples/DTDL-Validator (Archived)  
 
+---
+
 **Book Color Images :**
 https://static.packt-cdn.com/downloads/9781801071383_ColorImages.pdf
 
 **Example Code Files :**
 https://github.com/PacktPublishing/Hands-on-Azure-Digital-Twins  
+
+--- 
+
+**W3School SQL**
+https://www.w3schools.com/sql/default.asp  
+
 
