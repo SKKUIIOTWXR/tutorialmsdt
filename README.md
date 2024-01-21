@@ -21,11 +21,11 @@ https://learn.microsoft.com/en-us/samples/browse/?expanded=azure&products=azure-
 After creating a model, it's recommended to validate your models offline before uploading them to your Azure Digital Twins instance.  
 To help you validate your models, a .NET client-side DTDL parsing library is provided on NuGet: [DTDLParser](https://www.nuget.org/packages/DTDLParser). You can use the parser library directly in your C# code. You can also view sample use of the parser in the [DTDLParserResolveSample](https://github.com/digitaltwinconsortium/DTDLParser/tree/main/samples/DTDLParserResolveSample) in GitHub.  
 
+**Microsoft DTDL Validator Code Samples :**    
+https://github.com/Azure-Samples/DTDL-Validator (Archived)   
+
 **Azure Digital Twins Service Limits :**   
 https://learn.microsoft.com/en-us/azure/digital-twins/reference-service-limits   
-
-**Microsoft DTDL Validator Code Samples :**    
-https://github.com/Azure-Samples/DTDL-Validator (Archived)  
 
 ---
 
