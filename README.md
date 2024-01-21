@@ -32,6 +32,14 @@ https://github.com/PacktPublishing/Hands-on-Azure-Digital-Twins
 --- 
 
 **W3School SQL :**    
-https://www.w3schools.com/sql/default.asp  
+https://www.w3schools.com/sql/default.asp   
+
+--- 
+
+**Ontology**   
+- [Digital Twins Definition Language-based RealEstateCore ontology for smart buildings](https://github.com/Azure/opendigitaltwins-building)
+- [Digital Twins Definition Language (DTDL) ontology for Smart Cities](https://github.com/Azure/opendigitaltwins-smartcities)
+- [Digital Twins Definition Language (DTDL) ontology for Energy Grid](https://github.com/Azure/opendigitaltwins-energygrid)
+- [WebVOWL for the smart building ontology](https://doc.realestatecore.io/3.3/full.html)   
 
 
