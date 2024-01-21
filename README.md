@@ -5,6 +5,12 @@
 - KR : https://learn.microsoft.com/ko-kr/azure/digital-twins/  
 - Resource : [PDF (KR)](https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fko-kr%2Fazure%2Fdigital-twins%2Ftoc.json)  
 
+**Node.js :**   
+https://nodejs.org/en/blog/release/v14.15.4   
+
+**Azure Digital Twins Explorer :**   
+https://github.com/Azure-Samples/digital-twins-explorer    
+
 **Microsoft Azure Digital Twins Code Samples :**   
 https://learn.microsoft.com/en-us/samples/browse/?expanded=azure&products=azure-digital-twins   
 
