@@ -14,3 +14,8 @@
 4. Select the location. Choose the location that is closest to you.
 5. Select Basic for the pricing tier.
 6. Click on the Review + create button.
+
+1. Select Queues in the left menu of the resource.
+2. Click on the + Queue button.
+3. Enter iotcentral in the Name field.
+4. Click on the Create button:
