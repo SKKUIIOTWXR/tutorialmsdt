@@ -1,0 +1,9 @@
+############################## Postman Collection JSON for Control Plane
+https://github.com/Azure/azure-rest-api-specs/tree/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins
+https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2020-12-01/digitaltwins.json
+
+############################## Postman Collection JSON for Control Plane
+https://github.com/Azure/azure-rest-api-specs/tree/master/specification/digitaltwins/data-plane/Microsoft.DigitalTwins
+https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/data-plane/Microsoft.DigitalTwins/stable/2020-10-31/digitaltwins.json
+
+
