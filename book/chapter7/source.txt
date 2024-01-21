@@ -12,3 +12,6 @@
 1. Click the Run Query button to refresh the graph view.
 2. View the imported demo graph.
 3. Remove the structure of the previous chapters. Select each relationship one by one and click the Delete Relationship button. The digital twins can be removed all at once by multi-selecting them using the Shift button. Click the Delete Selected Twins button to remove them all at once. The following screenshot shows the results:
+
+############################## 4
+SELECT * FROM DIGITALTWINS DT WHERE DT.lightson = TRUE
