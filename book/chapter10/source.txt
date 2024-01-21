@@ -26,3 +26,11 @@
 4. Make sure that you have checked the Listen and Send checkboxes. The Send role is used by the Azure IoT Central application for sending messages to the queue. The Listen role is used for getting messages from the Azure Service Bus queue via Azure Functions.
 5. Click on the Create button.
 
+############################## Connect IoT Central to Service Bus
+1. Select Data export under App settings (X. Extend) in the left menu.
+2. Click on the + New export or Add an export button.
+
+1. Enter Azure Service Bus as the name for the export.
+2. Select Telemetry as the type of data to export.
+3. We have not yet created any destinations. An export configuration requires a destination to send data to. Click on the create a new one link. This will open a new dialog to create a destination. 
+
