@@ -39,7 +39,7 @@ https://www.w3schools.com/sql/default.asp
 **Ontology**   
 - [Digital Twins Definition Language-based RealEstateCore ontology for smart buildings](https://github.com/Azure/opendigitaltwins-building)
 - [Digital Twins Definition Language (DTDL) ontology for Smart Cities](https://github.com/Azure/opendigitaltwins-smartcities)
-- [Digital Twins Definition Language (DTDL) ontology for Energy Grid](https://github.com/Azure/opendigitaltwins-energygrid)
+- [Digital Twins Definition Language (DTDL) ontology for Energy Grid](https://github.com/Azure/opendigitaltwins-energygrid)   
+- [Tools for Open Digital Twins Definition Language (DTDL) based Ontologies](https://github.com/Azure/opendigitaltwins-tools)
 - [WebVOWL for the smart building ontology](https://doc.realestatecore.io/3.3/full.html)   
-
 
