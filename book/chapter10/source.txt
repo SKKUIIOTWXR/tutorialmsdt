@@ -1,0 +1,16 @@
+############################## Create IoT Central Application Resource
+1. Use dtbdemosensors as the resource name. This will fill in the application URL accordingly. If, for some reason, the name is already taken, try using another unique name.
+2. Select the subscription you have been using throughout this book.
+3. Select our resource group, called DigitalTwinsBook.
+4. Choose the Standard Tier 0 pricing plan. A free plan is not available. However, the cost of a single IoT device per month with some usage is very low, and will add up to no more than a dollar using these examples.
+5. Select Custom application as a template. This allows us to create our own destinations, exports, devices, and more. The other options are templates for specific industry-related situations with predefined components. Further explanation of these templates can be found at the following URL: https://docs.microsoft.com/en-us/azure/iot-central/core/concepts-app-templates.
+6. Select the location. Choose the location that is nearest to you.
+7. Click the Create button to continue.
+
+############################## Create Service Bus
+1. Select your subscription.
+2. Select the DigitalTwinsBook resource group.
+3. Enter the name dtbservicebus for our new Azure Service Bus instance. If the name is already in use, choose another unique name.
+4. Select the location. Choose the location that is closest to you.
+5. Select Basic for the pricing tier.
+6. Click on the Review + create button.
