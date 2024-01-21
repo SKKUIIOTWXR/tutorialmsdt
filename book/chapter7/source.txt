@@ -84,3 +84,38 @@ foreach (Dictionary<string, BasicDigitalTwin> item in result)
     BasicDigitalTwin FL = item["FL"] as BasicDigitalTwin;
     Console.WriteLine(string.Format("{0}-{1}", BU.Id, FL.Id));
 }
+
+############################## 12
+public delegate void QueryResult(BasicDigitalTwin dt);
+
+public void QueryDigitalTwins(string query, QueryResult onQueryResult)
+{
+    System.Threading.Tasks.Task task = System.Threading.Tasks.Task.Run(
+        () => QueryDigitalTwinsAsync(query, onQueryResult));
+}
+public async void QueryDigitalTwinsAsync(string query, QueryResult onQueryResult)
+{
+    AsyncPageable<BasicDigitalTwin> result = client.QueryAsync<BasicDigitalTwin>(query);
+    try
+    {
+        await foreach (BasicDigitalTwin dt in result)
+        {
+            onQueryResult(dt);
+        }
+    }
+    catch (RequestFailedException)
+    {
+    }
+}
+
+############################## 13
+public static void OnQueryResult(BasicDigitalTwin dt)
+{
+    Console.WriteLine(dt.Id);
+}
+
+############################## 14
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+dtHelper.QueryDigitalTwins("SELECT * FROM DIGITALTWINS", OnQueryResult);
+while(true) { }
+
