@@ -1,0 +1,9 @@
+############################## 1
+1. Open Azure Digital Twins Explorer.
+2. In the model view of Azure Digital Twins Explorer, delete the models in the following order: Meetingroom, Workarea, Room, Sensor, Floor. The Meetingroom and Workarea models must be removed first before the Room model is removed since they are both derived from Room.
+3. Add the models in the following order via the model view of Azure Digital Twins Explorer: Floor, Sensor, Room, Workarea, Meetingroom. Use the corresponding JSON files from the chapter7 folder to do this.
+
+############################## 2
+1. Click on the Import Graph button.
+2. Select the Excel SmartBuilding.xlsx file.
+3. Click the Open button to open the demo graph:
