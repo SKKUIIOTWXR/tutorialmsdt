@@ -11,3 +11,13 @@ https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitalt
 
 ############################## Get Access Token (Resource ID for Azure Digital Twins service endpoint
 PS C:\github> az account get-access-token --resource 0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+
+############################## azure-iot extension install
+PS C:\github> az extension add --upgrade --name azure-iot
+
+############################## az dt cmd list
+https://learn.microsoft.com/en-us/cli/azure/dt?view=azure-cli-latest&preserve-view=true#az_dt_list
+
+############################## az dt
+PS C:\github> az dt list --output table
+PS C:\github> az dt twin query --dt-name DTBDigitalTwins -q "SELECT * FROM DIGITALTWINS"
