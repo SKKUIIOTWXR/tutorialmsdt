@@ -14,4 +14,16 @@
 3. Remove the structure of the previous chapters. Select each relationship one by one and click the Delete Relationship button. The digital twins can be removed all at once by multi-selecting them using the Shift button. Click the Delete Selected Twins button to remove them all at once. The following screenshot shows the results:
 
 ############################## 4
-SELECT * FROM DIGITALTWINS DT WHERE DT.lightson = TRUE
+SELECT * FROM DIGITALTWINS DT WHERE DT.lightson = TRUE   --- SQL Reference 
+SELECT * FROM DIGITALTWINS DT WHERE DT.temperaturevalue>20.0 AND DT.temperaturevalue<21.0
+SELECT * FROM DIGITALTWINS DT WHERE DT.$dtId IN ['centralbuilding','thirdfloor','meetingroom301','meetingroom302']
+SELECT * FROM DIGITALTWINS WHERE IS_DEFINED(occupied)
+SELECT * FROM DIGITALTWINS DT WHERE IS_NUMBER(DT.temperaturevalue)
+SELECT TOP(9) FROM digitaltwins
+SELECT COUNT() FROM DIGITALTWINS
+
+############################## 5
+SELECT * FROM DIGITALTWINS WHERE IS_OF_MODEL('dtmi:com:smartbuilding:Room;1')
+SELECT * FROM DIGITALTWINS WHERE IS_OF_MODEL('dtmi:com:smartbuilding:Room;1', exact)
+
+
