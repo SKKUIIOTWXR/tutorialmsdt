@@ -34,3 +34,7 @@
 2. Select Telemetry as the type of data to export.
 3. We have not yet created any destinations. An export configuration requires a destination to send data to. Click on the create a new one link. This will open a new dialog to create a destination. 
 
+1. Enter Azure Service Bus as the name for the destination.
+2. Select Azure Service Bus Queue as the destination type.
+3. Copy the connection string you stored in the notepad earlier into the Connection string field.
+4. Click on the Create button.
