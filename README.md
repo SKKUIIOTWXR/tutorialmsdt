@@ -37,6 +37,7 @@ https://www.w3schools.com/sql/default.asp
 --- 
 
 **Ontology**   
+- [What is an ontology?](https://learn.microsoft.com/en-us/azure/digital-twins/concepts-ontologies)   
 - [Digital Twins Definition Language-based RealEstateCore ontology for smart buildings](https://github.com/Azure/opendigitaltwins-building)
 - [Digital Twins Definition Language (DTDL) ontology for Smart Cities](https://github.com/Azure/opendigitaltwins-smartcities)
 - [Digital Twins Definition Language (DTDL) ontology for Energy Grid](https://github.com/Azure/opendigitaltwins-energygrid)   
