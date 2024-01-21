@@ -25,7 +25,7 @@ https://github.com/PacktPublishing/Hands-on-Azure-Digital-Twins
 
 --- 
 
-**W3School SQL**    
+**W3School SQL :**    
 https://www.w3schools.com/sql/default.asp  
 
 
