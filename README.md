@@ -11,6 +11,9 @@ https://nodejs.org/en/blog/release/v14.15.4
 **Azure Digital Twins Explorer :**   
 https://github.com/Azure-Samples/digital-twins-explorer    
 
+**Azure Digital Twins API :**   
+https://github.com/Azure/azure-rest-api-specs/tree/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins   
+
 **Microsoft Azure Digital Twins Code Samples :**   
 https://learn.microsoft.com/en-us/samples/browse/?expanded=azure&products=azure-digital-twins   
 
