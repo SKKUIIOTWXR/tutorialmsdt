@@ -26,4 +26,61 @@ SELECT COUNT() FROM DIGITALTWINS
 SELECT * FROM DIGITALTWINS WHERE IS_OF_MODEL('dtmi:com:smartbuilding:Room;1')
 SELECT * FROM DIGITALTWINS WHERE IS_OF_MODEL('dtmi:com:smartbuilding:Room;1', exact)
 
+############################## 6
+SELECT DT,RT FROM DIGITALTWINS DT JOIN RT RELATED DT.contains WHERE DT.$dtId = 'secondfloor'
+SELECT BU,FL FROM DIGITALTWINS BU JOIN FL RELATED BU.has
+SELECT BU,FL FROM DIGITALTWINS BU JOIN FL RELATED BU.has WHERE FL.$dtId='firstfloor'
+SELECT BU,FL,RO FROM DIGITALTWINS BU JOIN FL RELATED BU.has JOIN RO RELATED FL.contains WHERE FL.$dtId='firstfloor'
+SELECT BU,FL,RO FROM DIGITALTWINS BU JOIN FL RELATED BU.has JOIN RO RELATED FL.contains WHERE S_OF_MODEL(RO,'dtmi:com:smartbuilding:Meetingroom;1') AND FL.$dtId='firstfloor'
 
+############################## 7
+SELECT BU,FL FROM DIGITALTWINS BU JOIN FL RELATED BU.has WHERE BU.$dtId='centralbuilding'
+SELECT BU,FL,BF FROM DIGITALTWINS BU JOIN FL RELATED BU.has BF WHERE BU.$dtId='centralbuilding'
+SELECT temperaturevalue FROM DIGITALTWINS WHERE IS_OF_MODEL('dtmi:com:smartbuilding:Meetingroom;1') AND IS_PRIMITIVE(temperaturevalue)
+SELECT FL.lightson,BF.level FROM DIGITALTWINS BU JOIN FL RELATED BU.has BF WHERE BU.$dtId='centralbuilding' AND IS_PRIMITIVE(FL.lightson) AND IS_PRIMITIVE(BF.level)
+
+############################## 8
+public Pageable<BasicDigitalTwin> QueryDigitalTwins(string query)
+{
+    Pageable<BasicDigitalTwin> result = null;
+    try
+    {
+        result = client.Query<BasicDigitalTwin>(query);
+    }
+    catch (RequestFailedException)
+    {
+    }
+    return result;
+}
+
+############################## 9
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+Pageable<BasicDigitalTwin> result = dtHelper.QueryDigitalTwins("SELECT * FROM DIGITALTWINS");
+foreach (BasicDigitalTwin item in result)
+{
+    Console.WriteLine(item.Id);
+}
+
+############################## 10
+public Pageable<Dictionary<string, BasicDigitalTwin>> Query(string query)
+{
+    Pageable<Dictionary<string, BasicDigitalTwin>> result = null;
+    try
+    {
+        result = client.Query<Dictionary<string, BasicDigitalTwin>>(query);
+    }
+    catch(RequestFailedException)
+    {
+    }
+    return result;
+}
+
+############################## 11
+DigitalTwinsManager dtHelper = new DigitalTwinsManager();
+Pageable<Dictionary<string, BasicDigitalTwin>> result = dtHelper.Query("SELECT BU,FL FROM DIGITALTWINS BU JOIN FL RELATED BU.has WHERE BU.$dtId='centralbuilding'");
+foreach (Dictionary<string, BasicDigitalTwin> item in result)
+{
+    BasicDigitalTwin BU = item["BU"] as BasicDigitalTwin;
+    BasicDigitalTwin FL = item["FL"] as BasicDigitalTwin;
+    Console.WriteLine(string.Format("{0}-{1}", BU.Id, FL.Id));
+}
