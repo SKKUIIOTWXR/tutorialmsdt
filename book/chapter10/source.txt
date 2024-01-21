@@ -18,4 +18,11 @@
 1. Select Queues in the left menu of the resource.
 2. Click on the + Queue button.
 3. Enter iotcentral in the Name field.
-4. Click on the Create button:
+4. Click on the Create button.
+
+1. Select Shared access policies from the left menu.
+2. Click on the + Add button to add a new policy.
+3. Enter the iotcentrallistener policy name.
+4. Make sure that you have checked the Listen and Send checkboxes. The Send role is used by the Azure IoT Central application for sending messages to the queue. The Listen role is used for getting messages from the Azure Service Bus queue via Azure Functions.
+5. Click on the Create button.
+
