@@ -13,3 +13,78 @@
     }
   ]
 }
+
+############################## Create storage account 
+1. Select the hamburger icon at the top of the screen.
+2. Enter storage account in the search field and press Enter.
+3. Click on the Create button to create the Azure function:
+
+1. Select the right subscription.
+2. Select the DigitalTwinsBook resource group.
+3. Enter dtbiotcentraltelemetry00 as the name.   <<<<< add nn
+4. Select a region. Choose the closest one to you.
+5. Click on the Review + create button:
+
+############################## Create Azure Function 
+1. Enter Azure Function in the search field.
+2. Select the Azure Functions template.
+3. Click on the Next button:
+
+1. Enter the project name SmartBuildingSensorUpdater.
+2. Set the location to c:\Github.
+3. Click on the Create button:  <<<<< Next button 
+
+1. Select Service Bus Queue trigger.
+2. Keep the connection string empty. We don't want to have that embedded in code. We will add this later in the local configuration file and in the application configuration when the Azure function is deployed to Azure.
+3. Enter the queue name iotcentrallistener.
+4. Click on the Create button.
+
+Open a file explorer and copy the DigitalTwins folder and its contents from c:\github\SmartBuildingConsoleApp\SmartBuildingConsoleApp\ to c:\github\SmartBuildingSensorUpdater\SmartBuildingSensorUpdater\.
+
+Add Nuget packages : Azure.DigitalTwins.Core / Azure.Identity	<<<<< Chapter 4  (PPT) 
+
+############################## DigitalTwinsManager class
+
+public void ManagedConnect(string appId)
+{
+    HttpClient httpClient = new HttpClient();
+    var cred = new ManagedIdentityCredential(appId);
+    client = new DigitalTwinsClient(new Uri(adtInstanceUrl), cred, new DigitalTwinsClientOptions { Transport = new HttpClientTransport(httpClient) });
+}
+
+public DigitalTwinsManager(string appId)
+{
+    ManagedConnect(appId);
+}
+
+############################## DigitalTwinsManager class namespace add	<<<<< Not Written in the book  
+using Azure.Core.Pipeline;
+using System.Collections.Generic;
+using System.Net.Http;
+
+############################## IoTCentralTrigger.cs
+using System.Text;
+using Microsoft.Azure.ServiceBus;  
+using Microsoft.Azure.WebJobs;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SmartBuildingConsoleApp.DigitalTwins;
+
+############################## IoTCentralTrigger class  
+const string adtAppId = "https://digitaltwins.azure.net";
+const string queueName = "iotcentral";
+[FunctionName("IoTCentralTrigger")]
+public static void Run([ServiceBusTrigger(queueName,Connection = "ServiceBusConnection")] Message message, ILogger log)
+{
+    string sensorId = message.UserProperties["iotcentral-device-id"].ToString();
+    string value = Encoding.ASCII.GetString(message.Body, 0, message.Body.Length);
+    var bodyProperty = (JObject)JsonConvert.DeserializeObject(value);
+    JToken temperatureToken = bodyProperty["telemetry"]["temperature"];
+    float temperature = temperatureToken.Value<float>();
+    log.LogInformation(string.Format("Sensor Id:{0}", sensorId));
+    log.LogInformation(string.Format("Sensor Temperature:{0}", temperature));
+    DigitalTwinsManager manager = new DigitalTwinsManager(adtAppId);
+    manager.UpdateDigitalTwinProperty(sensorId, "temperature", temperature);
+}
+
