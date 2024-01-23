@@ -88,3 +88,22 @@ public static void Run([ServiceBusTrigger(queueName,Connection = "ServiceBusConn
     manager.UpdateDigitalTwinProperty(sensorId, "temperature", temperature);
 }
 
+############################## Connection String 
+Endpoint=sb://dtbservicebus.servicebus.windows.net/;SharedAccessKeyName=iotcentrallistener;SharedAccessKey=nGNDfN6xgtugfJSrozoa+YhfsZDAM+Too7QtR/9mYPC40=;EntityPath=iotcentral
+
+############################## local.settings.json
+"ServiceBusConnection": "Endpoint=sb://dtbservicebus.servicebus.windows.net/;SharedAccessKeyName=iotcentrallistener;SharedAccessKey=nGNDfN6xgtugfJSrozoa+YhfsZDAM+Too7QtR/9mYPC40="
+
+############################## Creating an Azure function placeholder
+1. Click on the hamburger icon in the top-left corner and select + Create a resource.
+2. Type in the search field Function App.
+3. Click on the Create button in the Function App box:
+
+1. Select the subscription.
+2. Select the DigitalTwinsBook resource group.
+3. Enter the name IoTCentralTrigger. Select another unique name if this name is already taken.
+4. Select Code and make sure that the runtime stack is set to .NET. The version is automatically selected and does not have to be changed.
+5. Select the region. Choose the one that's closest to you.
+6. Click on the Review + create button:
+
+
