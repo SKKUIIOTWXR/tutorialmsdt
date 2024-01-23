@@ -110,4 +110,30 @@ Endpoint=sb://dtbservicebus.servicebus.windows.net/;SharedAccessKeyName=iotcentr
 az login
 az functionapp identity assign -g "<resource group name>" -n "<azure function name>"	<<<<< Template 
 az functionapp identity assign -g "DigitalTwinsBook" -n "IoTCentralTrigger00"
-az dt role-assignment create --dt-name "DTBDigitalTwins" --assignee "<principalId>" --role "Azure Digital Twins Data Owner"
+az dt role-assignment create --dt-name "DTBDigitalTwins" --assignee "<principalId>" --role "Azure Digital Twins Data Owner"	<<<<< Template
+az dt role-assignment create --dt-name "DTBDigitalTwins" --assignee "f6451111-aaaa-aaaa-aa1c-3d43d76c46e5" --role "Azure Digital Twins Data Owner"  <<<<< Individual <principalId> 
+
+############################## Publishing Azure function
+1. Select Azure as the publishing target.
+2. Click on the Next button.
+
+1. Select Azure function App (Windows) as the specific target.
+2. Click on the Next button.
+
+1. Select the subscription.
+2. Select the IoTCentralTrigger00 (Consumption) function app under the DigitalTwinsBook resource group in the hierarchy.
+3. Click on the Close button.
+
+1. Click on the Publish button to start the deployment.
+
+############################## Setting the connection string
+1. Select Configuration from the left menu.
+2. Click on the + New application setting button.
+3. Fill in the name ServiceBusConnection.
+4. Fill in the value (connection string) that we had stored in a notepad. Make sure that the last part, ;EntityPath=iotcentral, has been removed. 
+>>>>>Endpoint=sb://dtbservicebus.servicebus.windows.net/;SharedAccessKeyName=iotcentrallistener;SharedAccessKey=nGNDfN6xgtugfJSrozoa+YhfsZDAM+Too7QtR/9mYPC40=
+
+5. Click on the OK button.
+6. Click on the Save button:
+
+
