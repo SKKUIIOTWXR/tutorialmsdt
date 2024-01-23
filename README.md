@@ -8,6 +8,14 @@
 **Microsoft Azure Documentation :**   
 https://learn.microsoft.com/en-us/azure/?product=popular   
 
+**Azure Command-Line Interface (CLI) documentation :**   
+https://learn.microsoft.com/en-us/cli/azure/   
+
+**Azure Digital Twins Service Limits :**   
+https://learn.microsoft.com/en-us/azure/digital-twins/reference-service-limits    
+
+--- 
+
 **Azure Digital Twins Explorer :**   
 https://github.com/Azure-Samples/digital-twins-explorer    
 
@@ -26,9 +34,6 @@ https://github.com/Azure-Samples/DTDL-Validator (Archived)
 
 **How to send requests to the Azure Digital Twins APIs using Postman :**   
 https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/digital-twins/how-to-use-postman-with-digital-twins.md   
-
-**Azure Digital Twins Service Limits :**   
-https://learn.microsoft.com/en-us/azure/digital-twins/reference-service-limits   
 
 ---
 
