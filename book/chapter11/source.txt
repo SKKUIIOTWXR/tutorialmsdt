@@ -131,7 +131,7 @@ az dt role-assignment create --dt-name "DTBDigitalTwins" --assignee "f6451111-aa
 2. Click on the + New application setting button.
 3. Fill in the name ServiceBusConnection.
 4. Fill in the value (connection string) that we had stored in a notepad. Make sure that the last part, ;EntityPath=iotcentral, has been removed. 
->>>>>Endpoint=sb://dtbservicebus.servicebus.windows.net/;SharedAccessKeyName=iotcentrallistener;SharedAccessKey=nGNDfN6xgtugfJSrozoa+YhfsZDAM+Too7QtR/9mYPC40=
+>>>>>  Endpoint=sb://dtbservicebus.servicebus.windows.net/;SharedAccessKeyName=iotcentrallistener;SharedAccessKey=nGNDfN6xgtugfJSrozoa+YhfsZDAM+Too7QtR/9mYPC40=
 
 5. Click on the OK button.
 6. Click on the Save button:
