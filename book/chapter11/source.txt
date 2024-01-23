@@ -101,9 +101,13 @@ Endpoint=sb://dtbservicebus.servicebus.windows.net/;SharedAccessKeyName=iotcentr
 
 1. Select the subscription.
 2. Select the DigitalTwinsBook resource group.
-3. Enter the name IoTCentralTrigger. Select another unique name if this name is already taken.
+3. Enter the name IoTCentralTrigger00. Select another unique name if this name is already taken.
 4. Select Code and make sure that the runtime stack is set to .NET. The version is automatically selected and does not have to be changed.
 5. Select the region. Choose the one that's closest to you.
 6. Click on the Review + create button:
 
-
+############################## Granting the Azure function permissions
+az login
+az functionapp identity assign -g "<resource group name>" -n "<azure function name>"	<<<<< Template 
+az functionapp identity assign -g "DigitalTwinsBook" -n "IoTCentralTrigger00"
+az dt role-assignment create --dt-name "DTBDigitalTwins" --assignee "<principalId>" --role "Azure Digital Twins Data Owner"
