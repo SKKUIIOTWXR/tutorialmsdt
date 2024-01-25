@@ -6,10 +6,13 @@
 - Resource : [PDF (KR)](https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fko-kr%2Fazure%2Fdigital-twins%2Ftoc.json)  
 
 **Microsoft Azure Documentation :**   
-https://learn.microsoft.com/en-us/azure/?product=popular   
+https://learn.microsoft.com/en-us/azure/?product=popular    
 
 **Azure Command-Line Interface (CLI) documentation :**   
 https://learn.microsoft.com/en-us/cli/azure/   
+
+**Azure Digital Twins REST API reference :**   
+https://learn.microsoft.com/en-us/rest/api/azure-digitaltwins/   
 
 **Azure Digital Twins Service Limits :**   
 https://learn.microsoft.com/en-us/azure/digital-twins/reference-service-limits    
